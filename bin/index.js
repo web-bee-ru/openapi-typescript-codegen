@@ -17,6 +17,7 @@ program
     .option('--exportServices <value>', 'Generate services', true)
     .option('--exportModels <value>', 'Generate models', true)
     .option('--exportSchemas <value>', 'Generate schemas', false)
+    .option('--allFieldsRequired', 'Set all response required (key:? val -> key: val)')
     .parse(process.argv);
 
 const OpenAPI = require(path.resolve(__dirname, '../dist/index.js'));
@@ -32,6 +33,7 @@ if (OpenAPI) {
         exportServices: JSON.parse(program.exportServices) === true,
         exportModels: JSON.parse(program.exportModels) === true,
         exportSchemas: JSON.parse(program.exportSchemas) === true,
+        allFieldsRequired: program.allFieldsRequired,
     })
         .then(() => {
             process.exit(0);

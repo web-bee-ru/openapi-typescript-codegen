@@ -1,5 +1,8 @@
+{{#if @root.allFieldsRequired}}
+{{else}}
 {{#if @root.useOptions}}
-{{~#unless isRequired}}?{{else if default}}?{{/unless~}}
+{{~#unless isRequired}}?{{else if default}}{{else if default}}?{{/unless~}}
 {{else}}
 {{~#unless isRequired}}{{#unless default}}?{{/unless}}{{/unless~}}
+{{/if}}
 {{/if}}

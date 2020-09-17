@@ -22,6 +22,7 @@ export interface Options {
     exportServices?: boolean;
     exportModels?: boolean;
     exportSchemas?: boolean;
+    allFieldsRequired?: boolean;
     write?: boolean;
 }
 
@@ -38,6 +39,7 @@ export interface Options {
  * @param exportServices: Generate services.
  * @param exportModels: Generate models.
  * @param exportSchemas: Generate schemas.
+ * @param allFieldsRequired Set all fields required (key:? val -> key: val).
  * @param write Write the files to disk (true or false).
  */
 export async function generate({
@@ -50,6 +52,7 @@ export async function generate({
     exportServices = true,
     exportModels = true,
     exportSchemas = false,
+    allFieldsRequired = false,
     write = true,
 }: Options): Promise<void> {
     // Load the specification, read the OpenAPI version and load the
@@ -63,7 +66,7 @@ export async function generate({
             const client = parseV2(openApi);
             const clientFinal = postProcessClient(client, useUnionTypes);
             if (write) {
-                await writeClient(clientFinal, templates, output, httpClient, useOptions, exportCore, exportServices, exportModels, exportSchemas);
+                await writeClient(clientFinal, templates, output, httpClient, useOptions, exportCore, exportServices, exportModels, exportSchemas, allFieldsRequired);
             }
             break;
         }
@@ -72,7 +75,7 @@ export async function generate({
             const client = parseV3(openApi);
             const clientFinal = postProcessClient(client, useUnionTypes);
             if (write) {
-                await writeClient(clientFinal, templates, output, httpClient, useOptions, exportCore, exportServices, exportModels, exportSchemas);
+                await writeClient(clientFinal, templates, output, httpClient, useOptions, exportCore, exportServices, exportModels, exportSchemas, allFieldsRequired);
             }
             break;
         }

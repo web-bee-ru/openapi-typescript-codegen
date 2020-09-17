@@ -11,10 +11,13 @@ import { Templates } from './registerHandlebarTemplates';
  * @param templates The loaded handlebar templates.
  * @param outputPath Directory to write the generated files to.
  */
-export async function writeClientModels(models: Model[], templates: Templates, outputPath: string): Promise<void> {
+export async function writeClientModels(models: Model[], templates: Templates, outputPath: string, allFieldsRequired: boolean): Promise<void> {
     for (const model of models) {
         const file = path.resolve(outputPath, `${model.name}.ts`);
-        const templateResult = templates.model(model);
+        const templateResult = templates.model({
+            ...model,
+            allFieldsRequired,
+        });
         await writeFile(file, format(templateResult));
     }
 }

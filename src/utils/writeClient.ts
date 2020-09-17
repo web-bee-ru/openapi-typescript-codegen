@@ -25,6 +25,7 @@ async function copySupportFile(filePath: string, outputPath: string): Promise<vo
  * @param exportServices: Generate services.
  * @param exportModels: Generate models.
  * @param exportSchemas: Generate schemas.
+ * @param allFieldsRequired: Require all response fields.
  */
 export async function writeClient(
     client: Client,
@@ -35,7 +36,8 @@ export async function writeClient(
     exportCore: boolean,
     exportServices: boolean,
     exportModels: boolean,
-    exportSchemas: boolean
+    exportSchemas: boolean,
+    allFieldsRequired: boolean
 ): Promise<void> {
     const outputPath = path.resolve(process.cwd(), output);
     const outputPathCore = path.resolve(outputPath, 'core');
@@ -74,7 +76,7 @@ export async function writeClient(
     if (exportModels) {
         await mkdir(outputPathModels);
         await copySupportFile('models/Dictionary.ts', outputPath);
-        await writeClientModels(client.models, templates, outputPathModels);
+        await writeClientModels(client.models, templates, outputPathModels, allFieldsRequired);
     }
 
     await writeClientIndex(client, templates, outputPath, exportCore, exportServices, exportModels, exportSchemas);
