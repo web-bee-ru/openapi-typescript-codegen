@@ -1,15 +1,15 @@
 {
-    "name": "openapi-typescript-codegen",
-    "version": "0.4.11",
+    "name": "@web-bee-ru/openapi-typescript-codegen",
+    "version": "0.4.12-rc.1",
     "description": "NodeJS library that generates Typescript or Javascript clients based on the OpenAPI specification.",
     "author": "Ferdi Koomen",
-    "homepage": "https://github.com/ferdikoomen/openapi-typescript-codegen",
+    "homepage": "https://github.com/web-bee-ru/openapi-typescript-codegen",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/ferdikoomen/openapi-typescript-codegen.git"
+        "url": "git+https://github.com/web-bee-ru/openapi-typescript-codegen.git"
     },
     "bugs": {
-        "url": "https://github.com/ferdikoomen/openapi-typescript-codegen/issues"
+        "url": "https://github.com/web-bee-ru/openapi-typescript-codegen/issues"
     },
     "license": "MIT",
     "keywords": [
